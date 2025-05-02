@@ -1,0 +1,38 @@
+<div class="menu-icon" (click)="toggleSidebar()">&#9776;</div>
+
+
+<nav class="sidebar" [class.open]="sidebarOpen">
+    <ul>
+        <li class="sidebar-item"><a href="/">Home</a></li>
+        <li class="sidebar-item"><a href="/shop">Products</a></li>
+        <li class="sidebar-item"><a href="/dashboard/orders">Orders</a></li>
+        <li class="sidebar-item"><a href="/login">Logout</a></li>
+      </ul>
+    </nav>
+      
+  
+  <div class="overlay" *ngIf="sidebarOpen" (click)="toggleSidebar()"></div>
+  
+  <div class="main-content">
+   
+  </div>
+
+<div class="dashboard">
+    <h1>Admin Dashboard</h1>
+  
+    <section class="products-management">
+      <h2>Manage Products</h2>
+      <button>Add New Product</button>
+      <button>Update Product</button>
+      <button>Remove Product</button>
+    </section>
+  
+    <section class="orders-management">
+      <h2>View Customer Orders</h2>
+      <button>View Orders</button>
+    </section>
+  </div>
+
+ 
+  
+  

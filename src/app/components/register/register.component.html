@@ -1,0 +1,90 @@
+<div class="body">
+    <div class="form-container">
+      <!-- <form action="#" method="post"> -->
+        <form  (ngSubmit)="postData(myform)" #myform ="ngForm">
+        <h2>Join US</h2>
+        
+        <!-- Text Input -->
+        <div class="form-group">
+          <label for="username">
+            Username </label>           
+<!--  fe al wel adet hashname username , w b3den olt fe ngIF law hya msh valid azahraha -->
+          <input type="text" placeholder="Username"  autocomplete="Username"
+          id="username" name="username" ngModel required #username="ngModel">
+          <div class="msg" *ngIf="username.invalid  && username.touched">
+            username is required
+          </div>
+          <!-- <button  (click)="changes(myform)" type="button">Change Username</button> -->
+
+        </div>
+        
+        <!-- Password Input -->
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password"  id="password" placeholder="Enter password" name="password" ngModel required #password="ngModel">
+          <div class="msg" *ngIf="password.invalid && password.touched">
+            password is required
+          </div>
+        </div>
+  
+        <!-- Re-type Password Input -->
+        <div class="form-group">
+          <label for="re_password">Re-type Password</label>
+          <input type="password" id="re_password" placeholder="Re-type Password" name="re_password" ngModel required #re_password="ngModel" 
+          [pattern]="password.value">
+          <div class="msg" *ngIf="re_password.invalid  && re_password.touched">
+            <span *ngIf="re_password.errors?.['required']"> Re-write the password</span>
+            <span *ngIf="re_password.errors?.['pattern']"> The passowrd not match</span>
+          </div>
+        </div>
+        
+        <!-- Email Input -->
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="Enter email"  autocomplete="email" name="email" ngModel required #email="ngModel" email>
+          <div class="msg" *ngIf="email.invalid  && email.touched">
+            <!--  -->
+           <span *ngIf="email.errors?.['required']"> Email is required</span>
+           <span *ngIf="email.errors?.['email']">  wrong Email format </span>
+
+          </div>
+        </div>
+       
+        
+        <!-- Telephone Input -->
+        <div class="form-group">
+          <label for="Mobile">Mobile Number</label>
+          <input type="tel"     id="Mobile"
+           placeholder="Mobile Number" name="Mobile" ngModel required #Mobile="ngModel" pattern="^[0-9]{11}$">
+          <div class="msg" *ngIf="Mobile.invalid  && Mobile.touched">
+           <span *ngIf="Mobile.errors?.['required']"> Mobile Number is required</span>
+           <span *ngIf="Mobile.errors?.['pattern']"> Mobile should be 11 digits</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="address">Address</label>
+          <input type="text" placeholder=" Address" id="address" autocomplete="Address" name="address" ngModel required #address="ngModel">
+          <div class="msg" *ngIf="address.invalid  && address.touched">
+            Address is required
+          </div>
+        </div>
+        
+        
+   
+        <!-- Checkbox -->
+        <div class="form-group-inline">
+          <input type="checkbox" id="terms" name="terms">
+          <label for="terms">Agree to terms and conditions</label>
+        </div>
+        
+        <!-- Submit Button -->
+        <div class="form-group text-center">
+          <button (click)="navigateToHome()" class="btn btn-link">Create Account</button>
+        </div>
+      </form>
+    </div> 
+  </div>
+  
+  
+  

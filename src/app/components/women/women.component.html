@@ -1,0 +1,27 @@
+<div class="product-grid">
+  <div class="product-card" *ngFor="let product of products" (click)="showProductDetails(product)">
+    <img [src]="product.image" alt="{{ product.name }}" class="product-image" />
+    <h3 class="product-name">{{ product.name }}</h3>
+    <p class="product-price">{{ product.price | currency }}</p>
+    <button class="add-to-cart-btn">Add to Cart</button>
+  </div>
+</div>
+
+<!-- Product Details Modal -->
+<div *ngIf="selectedProduct" class="modal" (click)="closeProductDetails()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <span class="close" (click)="closeProductDetails()">&times;</span>
+    <span class="back" (click)="closeProductDetails()">
+      
+    </span>
+    
+    <div class="modal-body">
+      <img [src]="selectedProduct.image" alt="{{ selectedProduct.name }}" class="modal-product-image" />
+      <div class="modal-text">
+        <h2>{{ selectedProduct.name }}</h2>
+        <p>{{ selectedProduct.description || 'No description available' }}</p>
+        <p class="product-price">{{ selectedProduct.price | currency }}</p>
+        <button class="add-to-cart-btn">Add to Cart</button>
+      </div>
+    </div>
+  </div>

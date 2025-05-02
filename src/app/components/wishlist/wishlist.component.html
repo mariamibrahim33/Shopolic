@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wishlist</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .wishlist-container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      width: 300px;
+    }
+    h2 {
+      text-align: center;
+    }
+    .wishlist-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px;
+      border-bottom: 1px solid #ddd;
+    }
+    .wishlist-item:last-child {
+      border-bottom: none;
+    }
+    button {
+      background-color: #ff4d4d;
+      color: #fff;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    button:hover {
+      background-color: #e60000;
+    }
+    input[type="text"] {
+      padding: 8px;
+      margin-bottom: 10px;
+      width: 100%;
+      border-radius: 4px;
+      border: 1px solid #ddd;
+    }
+    .add-item {
+      width: 100%;
+      padding: 8px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    .add-item:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wishlist-container">
+    <h2>My Wishlist</h2>
+    <input type="text" id="itemInput" placeholder="Add a new item" />
+    <button class="add-item" onclick="addItem()">Add Item</button>
+
+    <ul id="wishlist">
+      <!-- Wishlist items will be displayed here -->
+    </ul>
+  </div>
+
+  <script>
+    const wishlist = [];
+
+    // Function to add an item to the wishlist
+    function addItem() {
+      const itemInput = document.getElementById("itemInput");
+      const itemName = itemInput.value.trim();
+
+      if (itemName) {
+        wishlist.push(itemName);
+        itemInput.value = ""; // Clear input field
+        renderWishlist();
+      } else {
+        alert("Please enter an item!");
+      }
+    }
+
+    // Function to remove an item from the wishlist
+    function removeItem(index) {
+      wishlist.splice(index, 1);
+      renderWishlist();
+    }
+
+    // Function to render the wishlist
+    function renderWishlist() {
+      const wishlistContainer = document.getElementById("wishlist");
+      wishlistContainer.innerHTML = ""; // Clear the list before re-rendering
+
+      wishlist.forEach((item, index) => {
+        const listItem = document.createElement("li");
+        listItem.classList.add("wishlist-item");
+
+        listItem.innerHTML = `
+          <span>${item}</span>
+          <button onclick="removeItem(${index})">Remove</button>
+        `;
+
+        wishlistContainer.appendChild(listItem);
+      });
+    }
+  </script>
+
+</body>
+</html>
+

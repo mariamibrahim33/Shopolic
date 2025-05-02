@@ -1,0 +1,93 @@
+<div class="checkout-container">
+
+    <!-- Left side: Customer Information -->
+    <div class="customer-info">
+  
+      <!-- Contact Section -->
+      <div class="section">
+        <h2 class="section-title">Contact</h2>
+        <input type="email" class="input-field" placeholder="Email" />
+      </div>
+  
+      <!-- Delivery Section -->
+      <div class="section">
+        <h2 class="section-title">Delivery</h2>
+        <select class="input-field">
+          <option selected>Egypt</option>
+        </select>
+  
+        <!-- First Name and Last Name side by side -->
+        <div class="row-fields">
+          <input type="text" class="input-field half" placeholder="First Name (optional)" />
+          <input type="text" class="input-field half" placeholder="Last Name" />
+        </div>
+  
+        <input type="text" class="input-field" placeholder="Address" />
+  
+        <!-- City and Governorate side by side -->
+        <div class="row-fields">
+          <input type="text" class="input-field half" placeholder="City" />
+          <input type="text" class="input-field half" placeholder="Governorate" />
+        </div>
+  
+        <input type="text" class="input-field" placeholder="Phone" />
+      </div>
+  
+      <!-- Shipping Method -->
+      <div class="section">
+        <h2 class="section-title">Shipping method</h2>
+        <div class="shipping-option">
+          <input type="radio" checked />
+          <label>Cairo and Giza — E£65.00</label>
+        </div>
+      </div>
+  
+    
+  
+      <!-- Pay Now Button -->
+      <button (click)="navigateToOderSuccess()" class="btn btn-link">Pay Now</button>
+  
+    </div>
+  
+    <!-- Right side: Order Summary -->
+    <div class="order-summary">
+  
+     
+  
+      <!-- Product Information -->
+      <div class="product-summary">
+        <img src="https://via.placeholder.com/60" alt="Product Image" class="product-image">
+        <div class="product-details">
+          <div class="product-name">Product Name</div>
+          <div class="product-price">E£500.00</div>
+        </div>
+      </div>
+
+       <!-- Discount Code -->
+       <div class="discount-bar">
+        <input type="text" placeholder="Discount code" class="discount-input" />
+        <button class="apply-button">Apply</button>
+      </div>
+  
+      <!-- Subtotal and Shipping and Total -->
+      <div class="price-summary">
+        <div class="row">
+          <span>Subtotal</span>
+          <span>E£500.00</span>
+        </div>
+        <div class="row">
+          <span>Shipping</span>
+          <span>E£65.00</span>
+        </div>
+        <div class="total-row">
+          <span>Total</span>
+          <span class="total-price">E£565.00</span>
+        </div>
+      </div>
+  
+    </div>
+  
+  </div>
+  
+  
+  
