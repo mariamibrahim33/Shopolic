@@ -5,7 +5,6 @@ import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { ProductDetailsComponent } from './components/product-list/product-details/product-details.component';
 import { LoginComponent } from './components/login/login.component';
 import { PaymentComponent } from './components/payment/payment.component';
 import { OrderSucessComponent } from './components/order-sucess/order-sucess.component';
@@ -24,7 +23,6 @@ import { ProductListComponent } from './components/product-list/product-list.com
     ProductListComponent,
     HeaderComponent,
     HomeComponent,
-    ProductDetailsComponent,
     LoginComponent,
     DashboardComponent,
     PaymentComponent,

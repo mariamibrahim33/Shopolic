@@ -19,10 +19,11 @@
 
     <div class="modal-body">
       <img
-        [src]="imageURL + selectedProduct.image"
-        alt="{{ selectedProduct.name }}"
-        class="modal-product-image"
-      />
+      [src]="'http://localhost:3000/assets/' + selectedProduct.image"
+      alt="{{ selectedProduct.name }}"
+      class="modal-product-image"
+    />
+    
       <div class="modal-text">
         <h2>{{ selectedProduct.name }}</h2>
         <p>{{ selectedProduct.description || 'No description available' }}</p>
