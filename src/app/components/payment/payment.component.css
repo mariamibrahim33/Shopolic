@@ -50,7 +50,7 @@
 }
 
 .btn-link {
-  background-color: #007bff;
+  background-color: #000000;
   color: white;
   padding: 0.8rem;
   border-radius: 0.75rem;
@@ -62,7 +62,7 @@
 }
 
 .btn-link:hover {
-  background-color: #0056b3;
+  background-color: #3c3d3e;
 }
 
 /* Order Summary */
@@ -116,7 +116,7 @@
 }
 
 .apply-button {
-  background-color: #28a745;
+  background-color: #000000;
   color: white;
   padding: 0.7rem 1rem;
   border: none;
@@ -126,7 +126,7 @@
 }
 
 .apply-button:hover {
-  background-color: #218838;
+  background-color: #3c3d3e;
 }
 
 /* Price summary */

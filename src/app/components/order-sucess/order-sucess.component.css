@@ -21,7 +21,7 @@
   }
   
   .home-button {
-    background-color: #007bff;
+    background-color: #000000;
     border: none;
     padding: 10px 20px;
     font-size: 18px;
@@ -31,6 +31,6 @@
   }
   
   .home-button:hover {
-    background-color: #0056b3;
+    background-color: #3c3d3e;
   }
   

@@ -1,9 +1,10 @@
-// src/app/app.component.ts
+
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
+import { CartComponent } from './components/cart/cart.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LoginComponent } from './components/login/login.component';
 import { PaymentComponent } from './components/payment/payment.component';
@@ -27,6 +28,7 @@ import { ProductListComponent } from './components/product-list/product-list.com
     DashboardComponent,
     PaymentComponent,
     OrderSucessComponent,
+    CartComponent,
     WomenComponent,
     KidsComponent,
     BeautyComponent,
