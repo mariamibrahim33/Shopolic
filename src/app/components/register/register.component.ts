@@ -2,11 +2,10 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-register',
-  imports: [CommonModule,RouterLink ,RouterLinkActive , FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
@@ -28,13 +27,6 @@ export class RegisterComponent {
     
   };
 
-  changes(form:NgForm){
-
-    form.form.patchValue({username:'Mariam'})
-    console.log(form.value)
-    
-  }
-  
 
 
 }

@@ -1,94 +1,103 @@
-.hero {
-  background-image: url('https://i.pinimg.com/originals/3d/f4/20/3df4204c406a8165f17343a4f577fcb1.jpg'); 
-  background-size: cover;
-  background-position: center;
-  padding: 70px 0px;
-  text-align: center;
-  color: white;
-  position: relative;
+/* Reset basics */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Helvetica Neue', sans-serif;
 }
 
-.hero::after {
-  content: "";
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background-color: rgba(0, 0, 0, 0.4); 
-  z-index: 0;
+body {
+  background-color: #fff;
+  color: #333;
+}
+
+/* Navbar Styles */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  border-bottom: 1px solid #eee;
+}
+
+nav .logo {
+  font-size: 24px;
+  font-weight: 600;
+  color: #000;
+}
+
+nav .icons {
+  display: flex;
+  gap: 20px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* Hero Section */
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 60px 40px;
+  background-color: #f9f9f9;
+  flex-wrap: wrap;
 }
 
 .hero-content {
-  position: relative;
-  z-index: 1;
-  max-width: 700px;
-  margin: auto;
+  max-width: 45%;
 }
 
-.hero h1 {
-  font-size: 3rem;
-  margin-bottom: 10px;
-}
-
-.hero p {
-  font-size: 1.2rem;
+.hero-content h1 {
+  font-size: 48px;
+  font-weight: bold;
   margin-bottom: 20px;
+}
+
+.hero-content p {
+  font-size: 18px;
+  margin-bottom: 25px;
 }
 
 .shop-button {
-  padding: 10px 20px;
-  background-color: #ff6600;
-  color: white;
+  padding: 12px 24px;
+  background-color: #000;
+  color: #fff;
   text-decoration: none;
-  border-radius: 5px;
+  border-radius: 30px;
   font-weight: bold;
-  transition: background 0.3s ease;
+  transition: background-color 0.3s ease;
 }
 
 .shop-button:hover {
-  background-color: #e65c00;
+  background-color: #444;
 }
 
+/* Category Grid */
 .main-content {
-  padding: 20px;
-  background-color: #f8f8f8;
-  font-family: 'Roboto', sans-serif;
-  line-height: 1.6;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  padding: 40px;
 }
 
-/* Category Section Styles */
 .category {
-  margin-top: 60px;
-  text-align: left;
+  text-align: center;
 }
 
 .category h3 {
-  font-size: 2.5rem;
-  font-family: 'Georgia', serif;
-  font-weight: bold;
-  margin-bottom: 20px;
-  color: #222;
+  font-size: 18px;
+  margin-bottom: 12px;
 }
-
-/* Category Image Container */
-.category-image {
-  width: 100%;
-  overflow: hidden;
-}
-
 
 .category-img {
   width: 100%;
-  height: 400px;
+  height: 280px;
   object-fit: cover;
-  object-position: top; 
-  border-radius: 8px;
+  border-radius: 10px;
   transition: transform 0.3s ease;
 }
 
-
-
-
-/* Optional: Hover effect */
 .category-img:hover {
-  transform: scale(1.02);
+  transform: scale(1.03);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
 }

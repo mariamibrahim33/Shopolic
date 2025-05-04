@@ -1,116 +1,67 @@
-/* Add margin-top to move the form below the navbar */
-.body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f4f7fc;
-    margin-top: 90px; /* Adjust this value based on your navbar height */
-  }
-  
-  .form-container {
-    background-color: #ffffff;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 500px;
-  }
-  
-  h2 {
-    text-align: center;
-    margin-bottom: 30px;
-    font-size: 24px;
-    font-weight: 600;
-    color: #333;
-  }
-  
-  /* Form Group Styling */
-  .form-group {
-    margin-bottom: 20px;
-  }
-  
-  .form-group-inline {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  /* Labels */
-  label {
-    font-size: 16px;
-    font-weight: 600;
-    color: #555;
-    display: block;
-    margin-bottom: 8px;
-  }
-  
-  /* Input Fields */
-  input[type="text"],
-  input[type="email"],
-  input[type="password"],
-  input[type="tel"],
-  input[type="checkbox"],
-  select,
-  textarea {
-    width: 100%;
-    padding: 12px;
-    margin: 5px 0 10px 0;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-sizing: border-box;
-  }
-  
-  input[type="checkbox"] {
-    width: auto;
-    margin-right: 10px;
-  }
-  
-  input[type="submit"] {
-    background-color: #898c68;
-    color: white;
-    padding: 12px;
-    border: none;
-    border-radius: 4px;
-    width: 100%;
-    cursor: pointer;
-  }
-  
-  input[type="submit"]:hover {
-    background-color: #808057;
-  }
-  
-  /* Error Message Styling */
-  .msg {
-    color: red;
-    font-size: 14px;
-  }
-  
-  /* Checkbox and Terms & Conditions */
-  .form-group-inline {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-  }
-  
-  .form-group-inline input {
-    margin-right: 10px;
-  }
-  
-  .form-group-inline label {
-    font-size: 14px;
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 600px) {
-    .form-container {
-      padding: 20px;
-      width: 90%;
-    }
-  
-    h2 {
-      font-size: 22px;
-    }
-  }
-  
-  
+.auth-container {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 40px;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  font-family: 'Helvetica Neue', sans-serif;
+}
+
+.auth-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.form-group {
+  display: flex;
+
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+.form-group input {
+  padding: 10px 12px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+.form-check-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.primary-button {
+  width: 100%;
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 12px 0;
+  border-radius: 30px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.primary-button:hover {
+  background-color: #333;
+}
+
+.msg {
+  color: red;
+  font-size: 14px;
+}
+
+.text-center {
+  text-align: center;
+}

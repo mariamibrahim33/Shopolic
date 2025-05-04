@@ -33,7 +33,12 @@ export class LoginComponent {
     console.log('Login form submitted with values:', loginForm.value);
   }
 
-  // ✅ Added to resolve template error
+  onSubmit() {
+    
+    this._router.navigate(['/home']);
+  }
+
+ 
   navigateToRegister() {
     this._router.navigate(['/register']);
   }

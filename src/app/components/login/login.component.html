@@ -1,35 +1,32 @@
-<form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+<div class="auth-container">
+  <h2 class="auth-title">Welcome Back</h2>
+  <p class="auth-subtitle">Sign in to continue</p>
 
-  <div data-mdb-input-init class="form-outline mb-4">
-    <input type="email" name="email" id="email" class="form-control" ngModel required />
-    <label class="form-label" for="form2Example1">Email address</label>
-  </div>
-
-  <div data-mdb-input-init class="form-outline mb-4">
-    <input type="password" name="password" id="password" class="form-control" ngModel required />
-    <label class="form-label" for="form2Example2">Password</label>
-  </div>
-
-  <div class="row mb-4">
-    <div class="col d-flex justify-content-center">
-      <div class="form-check">
-        <input class="form-check-input" name="rememberme" type="checkbox" value="" id="rememberMe" ngModel />
-        <label class="form-check-label" for="form2Example31"> Remember me </label>
-      </div>
+  <form>
+    <div class="form-group">
+      <label for="email">Email address</label>
+      <input type="email" id="email" name="email" ngModel required />
     </div>
-  </div>
 
-  <div class="form-group text-center">
-    <button type="submit" class="btn btn-link">Sign In</button>
-  </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" ngModel required />
+    </div>
 
-</form>
+    <div class="form-check-group">
+      <input type="checkbox" id="rememberMe" name="rememberme" ngModel />
+      <label for="rememberMe">Remember me</label>
+    </div>
 
-<div class="text-center">
-  <p>New Customer? 
-    <button (click)="navigateToRegister()" class="btn btn-link">Start here</button>
-  </p>
+    <button class="primary-button" type="button" (click)="onSubmit()">Sign In</button>
+
+    <p class="auth-footer">
+      New Customer?
+      <button class="link-button" type="button" (click)="navigateToRegister()">Start here</button>
+    </p>
+  </form>
 </div>
+
 
   
   
