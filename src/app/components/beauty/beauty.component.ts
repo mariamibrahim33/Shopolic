@@ -1,46 +1,43 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ShopService } from '../../services/shop.service'; 
+import { CartService } from '../../services/cart.service';
+import { FormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'app-beauty',
-  imports: [CommonModule],
+  imports: [CommonModule,FormsModule],
   templateUrl: './beauty.component.html',
   styleUrl: './beauty.component.css'
 })
 export class BeautyComponent {
-  products = [
-    {
-      id: 1,
-      name: 'Mascara',
-      price: 299.99,
-      image: 'assets/products/women-dress.png'
-    },
-    {
-      id: 2,
-      name: 'Makeup Remover',
-      price: 399.99,
-      image: 'assets/products/women-handbag.png'
-    },
-    {
-      id: 3,
-      name: 'Facial Cleanser',
-      price: 449.99,
-      image: 'assets/products/women-heels.png'
-    },
-    {
-      id: 4,
-      name: 'Body Splash',
-      price: 499.99,
-      image: 'assets/products/women-blazer.png'
-    }
-  ];
+  products : any[] = [];
+  imageURL = '';
   selectedProduct: any = null;
 
-  showProductDetails(product: any) {
-    this.selectedProduct = product;
+  constructor(private shopService: ShopService,
+    private cartService: CartService) {}
+
+    ngOnInit(): void {
+      this.imageURL = this.shopService.uploadURL;
+      this.shopService.getProducts().subscribe((data: any[]) => {
+        this.products = data;
+      });
+    }
+  
+    showProductDetails(product: any): void {
+      this.selectedProduct = product;
+  
+    }
+  
+    closeProductDetails(): void {
+      this.selectedProduct = null;
+  
+    }
+  
+    addToCart(product: any): void {
+    
+      }
   }
 
-  closeProductDetails() {
-    this.selectedProduct = null;
-  }
-}

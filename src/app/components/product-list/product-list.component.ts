@@ -14,8 +14,8 @@ import { FormsModule } from '@angular/forms';
 export class ProductListComponent implements OnInit {
   products: any[] = [];
   imageURL = '';
-  selectedProduct: any = null; // ✅ For modal display
-  selectedSize: string = '';
+  selectedProduct: any = null; 
+
 
   constructor(private shopService: ShopService,
   private cartService: CartService) {}
@@ -30,12 +30,12 @@ export class ProductListComponent implements OnInit {
 
   showProductDetails(product: any): void {
     this.selectedProduct = product;
-    this.selectedSize = '';
+
   }
 
   closeProductDetails(): void {
     this.selectedProduct = null;
-    this.selectedSize = '';
+
   }
 
   addToCart(product: any): void {
