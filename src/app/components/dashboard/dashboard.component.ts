@@ -107,22 +107,36 @@ export class DashboardComponent implements OnInit {
     this.editingProductId = product._id ?? null;
     this.isEditing = true;
   }
-
-  deleteProduct(id: string) {
-    if (confirm('Are you sure you want to delete this product?')) {
-      this.dashboardService.deleteProduct(id).subscribe({
+  productToDeleteId: string | null = null;
+  showDeleteModal = false;
+  
+  promptDelete(id: string) {
+    this.productToDeleteId = id;
+    this.showDeleteModal = true;
+  }
+  
+  confirmDelete() {
+    if (this.productToDeleteId) {
+      this.dashboardService.deleteProduct(this.productToDeleteId).subscribe({
         next: () => {
           alert('Product deleted.');
           this.fetchProducts();
+          this.cancelDelete();
         },
         error: (err) => {
           console.error('Delete failed', err);
           alert('Failed to delete product.');
+          this.cancelDelete();
         }
       });
     }
   }
-
+  
+  cancelDelete() {
+    this.showDeleteModal = false;
+    this.productToDeleteId = null;
+  }
+  
   resetForm() {
     this.product = { name: '', price: 0, description: '', image: '' };
     this.selectedFile = null;

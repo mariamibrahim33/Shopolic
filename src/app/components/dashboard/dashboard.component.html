@@ -52,7 +52,19 @@
 <section>
     <!-- Placeholder Buttons for Future -->
     <button (click)="editProduct(product)">Edit</button>
-    <button (click)="deleteProduct(product._id!)">Delete</button>
+    <button (click)="promptDelete(product._id!)">Delete</button>
+
+    <!-- Delete Confirmation Modal -->
+<div class="modal-backdrop" *ngIf="showDeleteModal">
+  <div class="modal">
+    <h3>Are you sure you want to delete this product?</h3>
+    <div class="modal-actions">
+      <button (click)="confirmDelete()" class="confirm">Yes, Delete</button>
+      <button (click)="cancelDelete()" class="cancel">Cancel</button>
+    </div>
+  </div>
+</div>
+
   </section>
 
   <!-- Orders Management -->
@@ -61,3 +73,6 @@
     <button>View Orders</button>
   </section>
 </div>
+
+
+

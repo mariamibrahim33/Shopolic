@@ -1,98 +1,222 @@
+/* Layout */
+body {
+  margin: 0;
+  font-family: 'Helvetica Neue', sans-serif;
+  background-color: #f9f9f9;
+}
+
+.menu-icon {
+  font-size: 24px;
+  cursor: pointer;
+  padding: 1rem;
+  background: none;
+  border: none;
+  color: black;
+  position: fixed;
+  top: 0.5rem;
+  left: 1rem;
+  z-index: 1001;
+}
+
 /* Sidebar */
 .sidebar {
   position: fixed;
   top: 0;
-  left: 0;
-  width: 250px;
+  left: -260px;
+  width: 240px;
   height: 100%;
-  background-color: #343a40; /* dark gray */
-  padding-top: 60px;
-  transform: translateX(-100%); /* hidden initially */
-  transition: transform 0.3s ease; /* smooth sliding */
-  z-index: 1000; /* above the overlay */
+  background-color: #ffffff;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+  padding-top: 5rem;
+  transition: left 0.3s ease-in-out;
+  z-index: 1000;
 }
 
-/* Sidebar when open */
 .sidebar.open {
-  transform: translateX(0); /* slide into view */
+  left: 0;
 }
 
-/* Sidebar List Items */
 .sidebar ul {
-  list-style: none;
+  list-style-type: none;
   padding: 0;
   margin: 0;
 }
 
-.sidebar ul li {
-  padding: 15px 20px;
+.sidebar-item {
+  padding: 1rem 1.5rem;
 }
 
-.sidebar ul li a {
-  color: #fff;
+.sidebar-item a {
   text-decoration: none;
+  color: #111;
+  font-weight: 500;
   display: block;
+  transition: background 0.3s;
 }
 
-.sidebar ul li a:hover {
-  background-color: #495057; /* slightly lighter on hover */
+.sidebar-item a:hover {
+  background-color: #f0f0f0;
+  border-radius: 6px;
 }
 
-/* Main Content */
-.main-content {
-  margin-left: 0;
-  padding: 20px;
-  transition: margin-left 0.3s ease;
-}
-
-/* Overlay Background */
+/* Overlay */
 .overlay {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* semi-transparent black */
-  z-index: 999; /* below sidebar but above everything else */
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.3);
+  z-index: 999;
 }
 
-/* Menu Icon (optional if you want a nice hamburger button) */
-.menu-icon {
-  font-size: 30px;
-  cursor: pointer;
-  padding: 10px;
-  position: fixed;
-  top: 10px;
-  left: 10px;
-  z-index: 1100; /* above everything */
-  color: #343a40;
+/* Main Content */
+.main-content {
+  padding: 0px;
+  margin-left: 0;
+  transition: margin-left 0.3s ease-in-out;
 }
 
+.sidebar.open ~ .main-content {
+  margin-left: 240px;
+}
 
-
+/* Dashboard Styling */
 .dashboard {
-    padding: 20px;
-  }
-  
-  section {
-    margin-bottom: 30px;
-    background: #f5f5f5;
-    padding: 15px;
-    border-radius: 8px;
-  }
-  
-  button {
-    margin-right: 10px;
-    margin-top: 10px;
-    padding: 10px 15px;
-    background-color: #1976d2;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #145a9e;
-  }
-  
+  max-width: 800px;
+  margin: 4rem auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border-radius: 16px;
+}
+
+.dashboard h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+/* Form Styling */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+input[type="text"],
+input[type="number"],
+textarea {
+  padding: 0.75rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  font-size: 1rem;
+}
+
+input[type="file"] {
+  font-size: 0.9rem;
+}
+
+button {
+  padding: 0.75rem 1.5rem;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 999px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #333;
+}
+
+/* Sections */
+section {
+  margin-top: 2rem;
+}
+
+section h2 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+/* --- Modal Backdrop and Box --- */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: blur(6px);
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.modal {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  animation: scaleIn 0.25s ease;
+}
+
+.modal h3 {
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+  color: #111;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.modal-actions button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.modal-actions .confirm {
+  background-color: black;
+  color: white;
+}
+
+.modal-actions .confirm:hover {
+  background-color: #333;
+}
+
+.modal-actions .cancel {
+  background-color: #f3f3f3;
+  color: #333;
+}
+
+.modal-actions .cancel:hover {
+  background-color: #e0e0e0;
+}
+
+/* --- Animations --- */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
