@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ShopService } from '../../services/shop.service'; // ✅ ensure the path is correct
+import { ShopService } from '../../services/shop.service'; 
+import { CartService } from '../../services/cart.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
@@ -13,8 +15,11 @@ export class ProductListComponent implements OnInit {
   products: any[] = [];
   imageURL = '';
   selectedProduct: any = null; // ✅ For modal display
+  selectedSize: string = '';
 
-  constructor(private shopService: ShopService) {}
+  constructor(private shopService: ShopService,
+  private cartService: CartService) {}
+ 
 
   ngOnInit(): void {
     this.imageURL = this.shopService.uploadURL;
@@ -25,11 +30,26 @@ export class ProductListComponent implements OnInit {
 
   showProductDetails(product: any): void {
     this.selectedProduct = product;
+    this.selectedSize = '';
   }
 
   closeProductDetails(): void {
     this.selectedProduct = null;
+    this.selectedSize = '';
   }
+
+  addToCart(product: any): void {
+    if (!this.selectedSize) {
+      alert('Please select a size before adding to cart.');
+      return;
+    }
+    const productWithSize = { ...product, size: this.selectedSize };
+    this.cartService.addToCart(productWithSize);
+    alert(`${product.name} (Size: ${this.selectedSize}) added to cart.`);
+
+    this.closeProductDetails();
+  }
+    
 
   // Uncomment when you integrate the cart
   // addToCart(product: any): void {
@@ -37,3 +57,4 @@ export class ProductListComponent implements OnInit {
   //   // this.cartService.addToCart(product);
   // }
 }
+
