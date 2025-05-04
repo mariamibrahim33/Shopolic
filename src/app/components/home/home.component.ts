@@ -5,12 +5,12 @@ import { Router } from '@angular/router';
   selector: 'app-home',
   imports: [],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrls: ['./home.component.css']  // 🔧 corrected this too
 })
 export class HomeComponent {
-    constructor(private router: Router) {}  
-  
-   
-    navigateToShop() {
-      this.router.navigate(['/shop']);}
+  constructor(private router: Router) {}
+
+  navigateToShop() {
+    this.router.navigate(['/shop']);
+  }
 }

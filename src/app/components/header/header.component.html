@@ -1,18 +1,23 @@
 <nav class="navbar">
   <div class="navbar-left">
-    <a href="/" class="logo">Shopolic</a>
-  </div>
+    <!-- Use routerLink instead of <a href="/"> to navigate correctly -->
+      <a href="/" class="logo">Shopolic</a>  </div>
 
   <div class="navbar-right">
     <a href="/cart" class="icon-link">
       <i class="fa fa-shopping-cart"></i>
     </a>
-    <a href="/login" class="icon-link">
-      <i class="fa fa-user"></i>
-    </a>
+
+   <!-- Use <a> with href for navigation -->
+<a *ngIf="!loggedIn" href="/login" class="icon-link">
+  <i class="fa fa-user"></i>
+</a>
+
+    <ng-container *ngIf="loggedIn">
+      <span class="icon-link">
+        <i class="fa fa-user"></i> {{ userName }}
+      </span>
+      <button class="btn btn-link logout-button" (click)="logout()">Logout</button>
+    </ng-container>
   </div>
 </nav>
-
-
-
-

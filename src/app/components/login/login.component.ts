@@ -1,20 +1,40 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgForm, FormsModule } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
-  imports: [],
+  standalone: true,
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrls: ['./login.component.css'],
+  imports: [FormsModule]
 })
 export class LoginComponent {
-  constructor(private router: Router) {}  
+  constructor(private _authS: AuthService, private _router: Router) {}
 
-  onSubmit() {
-    
-    this.router.navigate(['/home']);
+  login(loginForm: NgForm) {
+    if (loginForm.invalid) {
+      console.log('Form is invalid');
+      return;
+    }
+
+    this._authS.login(loginForm.value).subscribe({
+      next: (response) => {
+        this._router.navigate(['/dashboard']);
+        console.log('Decoded token:', this._authS.decodeAccessToken());
+      },
+      error: (err) => {
+        console.log('Login failed:', err.message);
+        alert('Login failed. Please check your credentials.');
+      }
+    });
+
+    console.log('Login form submitted with values:', loginForm.value);
   }
-  
+
+  // ✅ Added to resolve template error
   navigateToRegister() {
-    this.router.navigate(['/register']);}
-} 
+    this._router.navigate(['/register']);
+  }
+}

@@ -4,6 +4,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .navbar-left .logo {
@@ -22,6 +23,9 @@
   color: white;
   font-size: 22px;
   text-decoration: none;
+  min-width: 20px; /* Prevent it from shrinking */
+  flex-shrink: 0;
+ 
 }
 
 .icon-link:hover {

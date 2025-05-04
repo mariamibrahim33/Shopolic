@@ -1,74 +1,39 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CartService } from '../../cart.service';
-
-export interface Product {
-  id: number;
-  name: string;
-  price: number;
-  image: string;
-  description?: string;
-}
-
-export interface CartItem extends Product {
-  quantity: number; 
-}
-
+import { ShopService } from '../../services/shop.service'; // ✅ ensure the path is correct
 
 @Component({
   selector: 'app-product-list',
+  standalone: true,
   imports: [CommonModule],
   templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.css'],
+  styleUrls: ['./product-list.component.css']
 })
-export class ProductListComponent {
-  products: Product[] = [
-    {
-      id: 1,
-      name: 'Wireless Headphones',
-      price: 59.99,
-      image: 'assets/products/headphones.png',
-      description: 'High-quality wireless headphones with noise cancellation.',
-    },
-    {
-      id: 2,
-      name: 'Smart Watch',
-      price: 99.99,
-      image: 'assets/products/smartwatch.png',
-      description: 'Smartwatch with heart rate monitoring and fitness tracking.',
-    },
-    {
-      id: 3,
-      name: 'Gaming Mouse',
-      price: 29.99,
-      image: 'assets/products/mouse.png',
-      description: 'Ergonomic gaming mouse with customizable buttons.',
-    },
-    {
-      id: 4,
-      name: 'Laptop Stand',
-      price: 45.00,
-      image: 'assets/products/stand.png',
-      description: 'Adjustable laptop stand for better ergonomics.',
-    },
-  ];
+export class ProductListComponent implements OnInit {
+  products: any[] = [];
+  imageURL = '';
+  selectedProduct: any = null; // ✅ For modal display
 
-  selectedProduct: Product | null = null;
+  constructor(private shopService: ShopService) {}
 
-  constructor(private cartService: CartService) {}
+  ngOnInit(): void {
+    this.imageURL = this.shopService.uploadURL;
+    this.shopService.getProducts().subscribe((data: any[]) => {
+      this.products = data;
+    });
+  }
 
-  showProductDetails(product: Product) {
+  showProductDetails(product: any): void {
     this.selectedProduct = product;
   }
 
-  closeProductDetails() {
+  closeProductDetails(): void {
     this.selectedProduct = null;
   }
 
-  addToCart(product: Product) {
-    this.cartService.addToCart({ ...product, quantity: 1 }); // Adding to cart with quantity
-  }
-  
+  // Uncomment when you integrate the cart
+  // addToCart(product: any): void {
+  //   console.log('Add to cart:', product);
+  //   // this.cartService.addToCart(product);
+  // }
 }
-
-

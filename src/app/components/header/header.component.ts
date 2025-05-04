@@ -1,28 +1,38 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router'; 
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service'; // adjust path as needed
+import { CommonModule } from '@angular/common'; // Import CommonModule for ngIf
 
 @Component({
   selector: 'app-header',
+  standalone: true,
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.css'],
+  imports: [CommonModule] // Add CommonModule here
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   loggedIn = false;
+  userName: string | null = null;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private authService: AuthService) {}
+
+  ngOnInit() {
+    this.loggedIn = this.authService.isLoggedIn();
+    console.log('Logged In:', this.loggedIn);  // Check the console
+    if (this.loggedIn) {
+      this.userName = this.authService.getUserName();
+      console.log('User Name:', this.userName);  // Check the console
+    }
+  }
 
   navigateToLogin() {
     this.router.navigate(['/login']);
   }
 
-  toggleLogin() {
-    this.loggedIn = !this.loggedIn;
-
-    if (this.loggedIn) {
-      // User is logging in, set loggedIn to true and navigate to home page or dashboard
-      this.router.navigate(['/']);
-   
+  logout() {
+    this.authService.logout();
+    this.loggedIn = false;
+    this.userName = null;
+    this.router.navigate(['/login']);
   }
 }
-}
-

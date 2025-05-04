@@ -20,19 +20,44 @@
 <div class="dashboard">
     <h1>Admin Dashboard</h1>
   
-    <section class="products-management">
-      <h2>Manage Products</h2>
-      <button>Add New Product</button>
-      <button>Update Product</button>
-      <button>Remove Product</button>
-    </section>
-  
-    <section class="orders-management">
-      <h2>View Customer Orders</h2>
-      <button>View Orders</button>
-    </section>
-  </div>
+     <!-- Product Form -->
+     <form (ngSubmit)="submitProduct()" #productForm="ngForm">
+      <input
+        type="text"
+        name="name"
+        [(ngModel)]="product.name"
+        placeholder="Product Name"
+        required
+      />
+      <input
+        type="number"
+        name="price"
+        [(ngModel)]="product.price"
+        placeholder="Price"
+        required
+      />
+      <textarea
+        name="description"
+        [(ngModel)]="product.description"
+        placeholder="Description"
+        required
+      ></textarea>
+      <input
+        type="file"
+        (change)="onFileChange($event)"
+        accept="image/*"
+      />
+      <button type="submit">Add Product</button>
+    </form>
+<section>
+    <!-- Placeholder Buttons for Future -->
+    <button (click)="editProduct(product)">Edit</button>
+    <button (click)="deleteProduct(product._id!)">Delete</button>
+  </section>
 
- 
-  
-  
+  <!-- Orders Management -->
+  <section class="orders-management">
+    <h2>View Customer Orders</h2>
+    <button>View Orders</button>
+  </section>
+</div>
