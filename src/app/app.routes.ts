@@ -4,7 +4,7 @@ import { ProductDetailsComponent } from './components/product-list/product-detai
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-// import { CartComponent } from './components/cart/cart.component';
+import { CartComponent } from './components/cart/cart.component';
 import { ReactiveFormsComponent } from './components/reactive-forms/reactive-forms.component';
 import { PaymentComponent } from './components/payment/payment.component';
 import { OrderSucessComponent } from './components/order-sucess/order-sucess.component';
@@ -21,7 +21,7 @@ export const routes: Routes = [
 { path: 'login', component: LoginComponent },
 { path: 'register', component: RegisterComponent },
 {path: 'dashboard', component: DashboardComponent},
-// {path: 'cart', component: CartComponent},
+{path: 'cart', component: CartComponent},
 {path: 'reactiveForms', component:ReactiveFormsComponent},
 {path: 'payment', component: PaymentComponent},
 {path: 'order-sucess', component: OrderSucessComponent},

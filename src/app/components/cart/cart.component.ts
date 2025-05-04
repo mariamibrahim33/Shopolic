@@ -15,7 +15,7 @@ interface CartItem {
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css'],
-  imports: [CommonModule,]
+  imports: [CommonModule]
 })
 
 
