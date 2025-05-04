@@ -1,36 +1,30 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ShopService } from '../../services/shop.service'; 
+import { CartService } from '../../services/cart.service';
+import { FormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'app-kids',
-  imports: [CommonModule],
+  imports: [CommonModule,FormsModule],
   templateUrl: './kids.component.html',
   styleUrl: './kids.component.css'
 })
-export class KidsComponent {
-  products = [
-    {
-      id: 1,
-      name: 'T-Shirt',
-      price: 199.99,
-      image: 'assets/products/men-tshirt.png'
-    },
-    {id: 1,
-    name: 'Jumpsuit',
-    price: 199.99,
-    image: 'assets/products/men-tshirt.png'
-  },
-  {id: 1,
-    name: 'Dress',
-    price: 199.99,
-    image: 'assets/products/men-tshirt.png'
-  },
-  {id: 1,
-    name: 'Trousers',
-    price: 199.99,
-    image: 'assets/products/men-tshirt.png'
-  },]
+export class KidsComponent implements OnInit{
+  products :any[] = [];
+  imageURL = '';
   selectedProduct: any = null;
+
+  constructor(private shopService: ShopService,
+    private cartService: CartService) {}
+
+    ngOnInit(): void {
+      this.imageURL = this.shopService.uploadURL;
+      this.shopService.getProducts().subscribe((data: any[]) => {
+        this.products = data;
+      });
+    }
 
   showProductDetails(product: any) {
     this.selectedProduct = product;
@@ -38,6 +32,10 @@ export class KidsComponent {
 
   closeProductDetails() {
     this.selectedProduct = null;
+  }
+
+  addToCart(product: any): void {
+  
   }
 
 }
