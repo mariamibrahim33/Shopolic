@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 export interface Product {
   _id?: string;
@@ -15,7 +16,7 @@ export interface Product {
   providedIn: 'root'
 })
 export class DashboardService {
-  private apiUrl = 'http://localhost:3000/product'; // Adjust based on your backend
+  private apiUrl = `${environment.apiBase}/product`;
 
   constructor(private http: HttpClient) {}
 

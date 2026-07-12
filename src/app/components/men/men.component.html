@@ -8,7 +8,7 @@
   <div class="product-grid">
     <div class="product-card" *ngFor="let product of products">
       <div class="product-media" (click)="showProductDetails(product)">
-        <img [src]="'http://localhost:3000/assets/' + product.image" alt="{{ product.name || 'Product' }}">
+        <img [src]="imageURL +product.image" alt="{{ product.name || 'Product' }}">
         <button class="quick-add" (click)="addToCart(product); $event.stopPropagation()">
           <span class="material-icons-outlined">add_shopping_cart</span> Add to Cart
         </button>
@@ -27,7 +27,7 @@
     <div class="modal-content" (click)="$event.stopPropagation()">
       <span class="close" (click)="closeProductDetails()">&times;</span>
       <div class="modal-body">
-        <img [src]="'http://localhost:3000/assets/' + selectedProduct.image" alt="{{ selectedProduct.name }}" class="modal-product-image">
+        <img [src]="imageURL +selectedProduct.image" alt="{{ selectedProduct.name }}" class="modal-product-image">
         <div class="modal-text">
           <h2>{{ selectedProduct.name }}</h2>
           <p>{{ selectedProduct.description || 'No description available' }}</p>

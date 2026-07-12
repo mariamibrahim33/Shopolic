@@ -1,0 +1,15 @@
+# Render Blueprint — deploys Shopolic as a single web service that serves
+# both the Angular app and the API. On first deploy, Render will prompt you
+# to enter the MONGO_URI and JWT_SECRET values (they are not stored in git).
+services:
+  - type: web
+    name: shopolic
+    runtime: node
+    plan: free
+    buildCommand: npm run render-build
+    startCommand: npm run render-start
+    envVars:
+      - key: MONGO_URI
+        sync: false
+      - key: JWT_SECRET
+        sync: false

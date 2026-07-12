@@ -2,7 +2,8 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common'; 
 import { FormsModule } from '@angular/forms';
-import { DashboardService, Product } from '../../services/dashboard.service'; 
+import { DashboardService, Product } from '../../services/dashboard.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-dashboard',
@@ -150,5 +151,5 @@ export class DashboardComponent implements OnInit {
     this.editingProductId = null;
   }
 
-  imageURL = 'http://localhost:3000/assets/';
+  imageURL = `${environment.apiBase}/assets/`;
 }

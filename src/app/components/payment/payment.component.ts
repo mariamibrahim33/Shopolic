@@ -4,6 +4,7 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CartService, CartItem } from '../../services/cart.service';
 import { OrderService } from '../../services/order.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-payment',
@@ -12,7 +13,7 @@ import { OrderService } from '../../services/order.service';
   styleUrl: './payment.component.css'
 })
 export class PaymentComponent {
-  imageURL = 'http://localhost:3000/assets/';
+  imageURL = `${environment.apiBase}/assets/`;
   shippingFee = 65;
   placing = false;
 

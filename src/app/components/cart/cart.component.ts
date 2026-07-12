@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { CartService, CartItem } from '../../services/cart.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-cart',
@@ -10,7 +11,7 @@ import { CartService, CartItem } from '../../services/cart.service';
   imports: [CommonModule]
 })
 export class CartComponent {
-  imageURL = 'http://localhost:3000/assets/';
+  imageURL = `${environment.apiBase}/assets/`;
 
   constructor(private cart: CartService, private router: Router) {}
 

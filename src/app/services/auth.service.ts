@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { Router } from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class AuthService {
   private tokenSubject: BehaviorSubject<string | null> = 
     new BehaviorSubject<string | null>(null);
 
-  apiURL = 'http://localhost:3000/user';
+  apiURL = `${environment.apiBase}/user`;
 
   constructor(private _http: HttpClient) {
     const token = localStorage.getItem('accessToken');
