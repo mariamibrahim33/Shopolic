@@ -17,10 +17,13 @@ export class DashboardComponent implements OnInit {
   sidebarOpen = false;
   products: Product[] = [];
 
+  categories = ['men', 'women', 'kids', 'beauty'];
+
   product: Product = {
     name: '',
     price: 0,
     description: '',
+    category: '',
     image: ''
   };
   selectedFile: File | null = null;
@@ -66,6 +69,7 @@ export class DashboardComponent implements OnInit {
     formData.append('name', this.product.name);
     formData.append('price', this.product.price.toString());
     formData.append('description', this.product.description);
+    formData.append('category', this.product.category || '');
     if (this.selectedFile) {
       formData.append('image', this.selectedFile);
     }
@@ -102,10 +106,12 @@ export class DashboardComponent implements OnInit {
       name: product.name,
       price: product.price,
       description: product.description,
+      category: product.category ?? '',
       image: product.image
     };
     this.editingProductId = product._id ?? null;
     this.isEditing = true;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
   productToDeleteId: string | null = null;
   showDeleteModal = false;
@@ -138,9 +144,11 @@ export class DashboardComponent implements OnInit {
   }
   
   resetForm() {
-    this.product = { name: '', price: 0, description: '', image: '' };
+    this.product = { name: '', price: 0, description: '', category: '', image: '' };
     this.selectedFile = null;
     this.isEditing = false;
     this.editingProductId = null;
   }
+
+  imageURL = 'http://localhost:3000/assets/';
 }

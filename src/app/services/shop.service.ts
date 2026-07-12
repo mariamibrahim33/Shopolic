@@ -13,8 +13,9 @@ export class ShopService {
  apiURL ='http://localhost:3000/product'
 uploadURL='http://localhost:3000/assets'
 
-   getProducts():Observable<any>{
-   return this._http.get<any[]>(this.apiURL);
+   getProducts(category?:string):Observable<any>{
+   const url = category ? `${this.apiURL}?category=${category}` : this.apiURL;
+   return this._http.get<any[]>(url);
    }
 
    addProduct(product:FormData):Observable<any>{

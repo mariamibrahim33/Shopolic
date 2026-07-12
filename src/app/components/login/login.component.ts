@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm, FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 
@@ -11,7 +11,11 @@ import { AuthService } from '../../services/auth.service';
   imports: [FormsModule]
 })
 export class LoginComponent {
-  constructor(private _authS: AuthService, private _router: Router) {}
+  constructor(
+    private _authS: AuthService,
+    private _router: Router,
+    private _route: ActivatedRoute
+  ) {}
 
   login(loginForm: NgForm) {
     if (loginForm.invalid) {
@@ -20,26 +24,27 @@ export class LoginComponent {
     }
 
     this._authS.login(loginForm.value).subscribe({
-      next: (response) => {
-        this._router.navigate(['/dashboard']);
-        console.log('Decoded token:', this._authS.decodeAccessToken());
+      next: () => {
+        // If they were sent here mid-checkout, return them there.
+        const returnUrl = this._route.snapshot.queryParamMap.get('returnUrl');
+        if (returnUrl) {
+          this._router.navigateByUrl(returnUrl);
+          return;
+        }
+        // Otherwise: admins to the dashboard, shoppers to the store.
+        this._router.navigate([this._authS.isAdmin() ? '/dashboard' : '/home']);
       },
       error: (err) => {
         console.log('Login failed:', err.message);
-        alert('Login failed. Please check your credentials.');
+        alert('Login failed. Please check your email and password.');
       }
     });
-
-    console.log('Login form submitted with values:', loginForm.value);
   }
 
-  onSubmit() {
-    
-    this._router.navigate(['/home']);
-  }
-
- 
   navigateToRegister() {
-    this._router.navigate(['/register']);
+    const returnUrl = this._route.snapshot.queryParamMap.get('returnUrl');
+    this._router.navigate(['/register'], {
+      queryParams: returnUrl ? { returnUrl } : {},
+    });
   }
 }

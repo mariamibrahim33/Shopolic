@@ -21,7 +21,7 @@ export class WomenComponent implements OnInit{
 
     ngOnInit(): void {
       this.imageURL = this.shopService.uploadURL;
-      this.shopService.getProducts().subscribe((data: any[]) => {
+      this.shopService.getProducts('women').subscribe((data: any[]) => {
         this.products = data;
       });
     }
@@ -35,7 +35,7 @@ export class WomenComponent implements OnInit{
   }
 
   addToCart(product: any): void {
-  
+    this.cartService.addToCart(product);
   }
 
 }

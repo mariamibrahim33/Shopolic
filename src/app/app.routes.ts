@@ -12,16 +12,18 @@ import { MenComponent } from './components/men/men.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { KidsComponent } from './components/kids/kids.component';
 import { BeautyComponent } from './components/beauty/beauty.component';
+import { adminGuard } from './guards/admin.guard';
+import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
 { path: '', redirectTo: '/home', pathMatch: 'full' },
 {path: 'home',component: HomeComponent},
 { path: 'login', component: LoginComponent },
 { path: 'register', component: RegisterComponent },
-{path: 'dashboard', component: DashboardComponent},
+{path: 'dashboard', component: DashboardComponent, canActivate: [adminGuard]},
 {path: 'cart', component: CartComponent},
 {path: 'reactiveForms', component:ReactiveFormsComponent},
-{path: 'payment', component: PaymentComponent},
+{path: 'payment', component: PaymentComponent, canActivate: [authGuard]},
 {path: 'order-sucess', component: OrderSucessComponent},
 {path: 'women', component: WomenComponent},
 {path: 'kids', component: KidsComponent},

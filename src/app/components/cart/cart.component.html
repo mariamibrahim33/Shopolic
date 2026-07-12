@@ -1,34 +1,65 @@
-<div class="cart-container">
-  <h2 class="auth-title">Your cart</h2>
+<section class="cart-page container">
+  <header class="cart-head">
+    <p class="eyebrow">Shopolic</p>
+    <h1>Shopping Bag</h1>
+  </header>
 
-  <div *ngFor="let item of cartItems" class="cart-item">
-    <img [src]="item.image" alt="Product Image" class="cart-item-image">
+  <!-- Empty state -->
+  <div *ngIf="cartItems.length === 0" class="empty-cart">
+    <span class="material-icons-outlined empty-icon">shopping_bag</span>
+    <h3>Your bag is empty</h3>
+    <p>Looks like you haven't added anything yet.</p>
+    <button (click)="continueShopping()" class="btn">Continue Shopping</button>
+  </div>
 
-    <div class="cart-item-details">
-      <h4 class="product-name">{{ item.name }}</h4>
-      <p class="product-price">{{ item.price | currency:'EGP':'symbol-narrow' }}</p>
-    </div>
+  <!-- Cart with items -->
+  <div *ngIf="cartItems.length > 0" class="cart-layout">
 
-    <div class="cart-item-controls">
-      <div class="quantity-control">
-        <button (click)="decreaseQuantity(item)">−</button>
-        <span>{{ item.quantity }}</span>
-        <button (click)="increaseQuantity(item)">+</button>
+    <!-- Items -->
+    <div class="cart-items">
+      <div *ngFor="let item of cartItems" class="cart-item">
+        <div class="item-media">
+          <img [src]="imageURL + item.image" alt="{{ item.name }}">
+        </div>
+
+        <div class="item-info">
+          <h4 class="item-name">{{ item.name }}</h4>
+          <p class="item-unit">{{ item.price | currency:'EGP':'symbol-narrow' }}</p>
+          <button (click)="removeFromCart(item)" class="remove-btn">
+            <span class="material-icons-outlined">delete_outline</span> Remove
+          </button>
+        </div>
+
+        <div class="item-qty">
+          <button (click)="decreaseQuantity(item)" aria-label="Decrease">−</button>
+          <span>{{ item.quantity }}</span>
+          <button (click)="increaseQuantity(item)" aria-label="Increase">+</button>
+        </div>
+
+        <div class="item-total">
+          {{ item.price * item.quantity | currency:'EGP':'symbol-narrow' }}
+        </div>
       </div>
-      <button (click)="removeFromCart(item)" class="remove-btn">Remove item</button>
-
-
     </div>
 
-    <div class="item-total">
-      {{ item.price * item.quantity | currency:'EGP':'symbol-narrow' }}
-    </div>
-  </div>
+    <!-- Summary -->
+    <aside class="cart-summary">
+      <h3>Order Summary</h3>
+      <div class="summary-row">
+        <span>Subtotal</span>
+        <span>{{ totalPrice | currency:'EGP':'symbol-narrow' }}</span>
+      </div>
+      <div class="summary-row muted">
+        <span>Shipping</span>
+        <span>Calculated at checkout</span>
+      </div>
+      <div class="summary-total">
+        <span>Estimated total</span>
+        <span>{{ totalPrice | currency:'EGP':'symbol-narrow' }}</span>
+      </div>
+      <button (click)="navigateToPayment()" class="btn btn-block">Checkout</button>
+      <button (click)="continueShopping()" class="btn btn-outline btn-block">Continue Shopping</button>
+    </aside>
 
-  <div class="cart-summary">
-    <h3>Estimated total: {{ totalPrice | currency:'EGP':'symbol-narrow' }}</h3>
-    <p class="note">Taxes, discounts and shipping calculated at checkout</p>
-    <button (click)="navigateToPayment()" class="primary-button">Check out</button>
-
   </div>
-</div>
+</section>

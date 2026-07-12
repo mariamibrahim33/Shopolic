@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -10,24 +11,35 @@ import { Router } from '@angular/router';
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
-  constructor(private router: Router) {}
-
-
+  constructor(
+    public router: Router,
+    private authService: AuthService,
+    private route: ActivatedRoute
+  ) {}
 
    navigateToHome() {
-    this.router.navigate(['/']);} 
+    this.router.navigate(['/']);}
 
   postData(form:NgForm){
-    console.log(form);
-    if(form.valid){
-      console.log('valid')
-    } else{
-      console.log('invalid')
+    if(form.invalid){
+      // Touch all fields so validation messages show
+      Object.values(form.controls).forEach(c => c.markAsTouched());
+      return;
     }
-    
+
+    const { username, email, password } = form.value;
+    this.authService.register({ name: username, email, password }).subscribe({
+      next: () => {
+        // Return them to checkout if that's where they came from.
+        const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
+        this.router.navigateByUrl(returnUrl || '/home');
+      },
+      error: (err) => {
+        const msg = err?.error?.message || 'Registration failed. Please try again.';
+        alert(msg);
+      }
+    });
   };
-
-
 
 }
 

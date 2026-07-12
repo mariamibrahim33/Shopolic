@@ -1,51 +1,70 @@
-
-<div class="hero">
-  <div class="hero-content">
-    <h1>Discover Your Style</h1>
-    <p>Trendy fashion for Men, Women, Kids & More</p>
-    <a href="/product-list" class="shop-button">Shop All</a>
-  </div>
-</div>
-<div class="main-content">
-  
- 
-  <div class="category">
-    <h3>Men</h3>
-    <div class="category-image">
-      <a href="/men">
-        <img class="category-img" src="https://i.pinimg.com/736x/f2/af/96/f2af9609123155babccd28382cf9ef13.jpg" alt="Men Fashion">
-      </a>
+<!-- ===== Hero ===== -->
+<section class="hero">
+  <div class="hero-text">
+    <p class="eyebrow">New Season 2026</p>
+    <h1>Discover<br>Your Style</h1>
+    <p class="hero-sub">Curated fashion for Men, Women, Kids &amp; Beauty — thoughtfully designed, effortlessly worn.</p>
+    <div class="hero-actions">
+      <a routerLink="/product-list" class="btn">Shop All</a>
+      <a routerLink="/women" class="btn btn-outline">Shop Women</a>
     </div>
   </div>
+  <div class="hero-image">
+    <img src="https://i.pinimg.com/736x/9f/bf/71/9fbf71d1b1597003059002b9c47e695a.jpg" alt="Featured fashion">
+  </div>
+</section>
 
+<!-- ===== Value strip ===== -->
+<section class="value-strip">
+  <div class="value"><span class="material-icons-outlined">local_shipping</span> Free shipping over E£1000</div>
+  <div class="value"><span class="material-icons-outlined">verified</span> Authentic products</div>
+  <div class="value"><span class="material-icons-outlined">autorenew</span> 30-day easy returns</div>
+  <div class="value"><span class="material-icons-outlined">lock</span> Secure checkout</div>
+</section>
 
-  <div class="category">
-    <h3>Women</h3>
-    <div class="category-image">
-      <a href="/women">
-        <img class="category-img" src="https://i.pinimg.com/736x/9f/bf/71/9fbf71d1b1597003059002b9c47e695a.jpg" alt="Women Fashion">
-      </a>
-    </div>
+<!-- ===== Categories ===== -->
+<section class="categories container">
+  <div class="section-head">
+    <p class="eyebrow">Browse</p>
+    <h2>Shop by Category</h2>
   </div>
 
+  <div class="category-grid">
+    <a routerLink="/men" class="category-card">
+      <div class="category-media">
+        <img src="https://i.pinimg.com/736x/f2/af/96/f2af9609123155babccd28382cf9ef13.jpg" alt="Men">
+      </div>
+      <div class="category-label"><span>Men</span><span class="arrow material-icons-outlined">arrow_forward</span></div>
+    </a>
 
-  <div class="category">
-    <h3>Kids</h3>
-    <div class="category-image">
-      <a href="/kids">
-        <img class="category-img" src="https://i.pinimg.com/736x/4a/71/c9/4a71c9715e50206190a54febf9fcfbce.jpg" alt="Kids Fashion">
-      </a>
-    </div>
+    <a routerLink="/women" class="category-card">
+      <div class="category-media">
+        <img src="https://i.pinimg.com/736x/9f/bf/71/9fbf71d1b1597003059002b9c47e695a.jpg" alt="Women">
+      </div>
+      <div class="category-label"><span>Women</span><span class="arrow material-icons-outlined">arrow_forward</span></div>
+    </a>
+
+    <a routerLink="/kids" class="category-card">
+      <div class="category-media">
+        <img src="https://i.pinimg.com/736x/4a/71/c9/4a71c9715e50206190a54febf9fcfbce.jpg" alt="Kids">
+      </div>
+      <div class="category-label"><span>Kids</span><span class="arrow material-icons-outlined">arrow_forward</span></div>
+    </a>
+
+    <a routerLink="/beauty" class="category-card">
+      <div class="category-media">
+        <img src="https://i.pinimg.com/736x/44/cf/55/44cf55caae377fadb118b02060a705e0.jpg" alt="Beauty">
+      </div>
+      <div class="category-label"><span>Beauty</span><span class="arrow material-icons-outlined">arrow_forward</span></div>
+    </a>
   </div>
+</section>
 
-
-  <div class="category">
-    <h3>Beauty & Personal Care</h3>
-    <div class="category-image">
-      <a href="/beauty">
-        <img class="category-img" src="https://i.pinimg.com/736x/44/cf/55/44cf55caae377fadb118b02060a705e0.jpg" alt="Beauty & Personal Care">
-      </a>
-    </div>
+<!-- ===== Editorial banner ===== -->
+<section class="editorial">
+  <div class="editorial-inner">
+    <p class="eyebrow light">The Shopolic Edit</p>
+    <h2>Timeless pieces,<br>made to last.</h2>
+    <a routerLink="/product-list" class="btn btn-outline light">Explore the Collection</a>
   </div>
-
-</div>
+</section>

@@ -21,7 +21,7 @@ export class BeautyComponent {
 
     ngOnInit(): void {
       this.imageURL = this.shopService.uploadURL;
-      this.shopService.getProducts().subscribe((data: any[]) => {
+      this.shopService.getProducts('beauty').subscribe((data: any[]) => {
         this.products = data;
       });
     }
@@ -37,7 +37,7 @@ export class BeautyComponent {
     }
   
     addToCart(product: any): void {
-    
-      }
+      this.cartService.addToCart(product);
+    }
   }
 

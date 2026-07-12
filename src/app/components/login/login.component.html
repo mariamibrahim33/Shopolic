@@ -2,10 +2,10 @@
   <h2 class="auth-title">Welcome Back</h2>
   <p class="auth-subtitle">Sign in to continue</p>
 
-  <form>
+  <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
     <div class="form-group">
       <label for="email">Email address</label>
-      <input type="email" id="email" name="email" ngModel required />
+      <input type="email" id="email" name="email" ngModel required email />
     </div>
 
     <div class="form-group">
@@ -18,7 +18,7 @@
       <label for="rememberMe">Remember me</label>
     </div>
 
-    <button class="primary-button" type="button" (click)="onSubmit()">Sign In</button>
+    <button class="primary-button" type="submit">Sign In</button>
 
     <p class="auth-footer">
       New Customer?

@@ -1,5 +1,6 @@
 <div class="auth-container">
-  <h2 class="auth-title">Join Us</h2>
+  <h2 class="auth-title">Create Account</h2>
+  <p class="auth-subtitle">Join Shopolic and start shopping</p>
 
   <form (ngSubmit)="postData(myform)" #myform="ngForm">
     
@@ -61,8 +62,13 @@
     </div>
 
     <!-- Submit Button -->
-    <div class="form-group text-center">
-      <button class="link-button" type="button" (click)="navigateToHome()">Create Account</button>
+    <div class="form-group">
+      <button class="primary-button" type="submit">Create Account</button>
     </div>
+
+    <p class="auth-footer">
+      Already have an account?
+      <button class="link-button" type="button" (click)="router.navigate(['/login'])">Sign in</button>
+    </p>
   </form>
 </div> 

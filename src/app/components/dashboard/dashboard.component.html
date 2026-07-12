@@ -1,73 +1,96 @@
-<div class="menu-icon" (click)="toggleSidebar()">&#9776;</div>
+<section class="dash">
+  <header class="dash-head">
+    <div>
+      <p class="eyebrow">Admin</p>
+      <h1>Dashboard</h1>
+    </div>
+    <div class="dash-stat">
+      <span class="stat-num">{{ products.length }}</span>
+      <span class="stat-label">Products</span>
+    </div>
+  </header>
 
+  <div class="dash-grid">
 
-<nav class="sidebar" [class.open]="sidebarOpen">
-    <ul>
-        <li class="sidebar-item"><a href="/">Home</a></li>
-        <li class="sidebar-item"><a href="/shop">Products</a></li>
-        <li class="sidebar-item"><a href="/dashboard/orders">Orders</a></li>
-        <li class="sidebar-item"><a href="/login">Logout</a></li>
-      </ul>
-    </nav>
-      
-  
-  <div class="overlay" *ngIf="sidebarOpen" (click)="toggleSidebar()"></div>
-  
-  <div class="main-content">
-   
+    <!-- Product form -->
+    <div class="panel form-panel">
+      <h3>{{ isEditing ? 'Edit Product' : 'Add New Product' }}</h3>
+
+      <form (ngSubmit)="submitProduct()" #productForm="ngForm">
+        <label class="fld-label">Product name</label>
+        <input class="fld" type="text" name="name" [(ngModel)]="product.name" placeholder="e.g. Cotton T-Shirt" required />
+
+        <div class="fld-row">
+          <div>
+            <label class="fld-label">Price (EGP)</label>
+            <input class="fld" type="number" name="price" [(ngModel)]="product.price" placeholder="0" required />
+          </div>
+          <div>
+            <label class="fld-label">Category</label>
+            <select class="fld" name="category" [(ngModel)]="product.category" required>
+              <option value="" disabled>Select…</option>
+              <option *ngFor="let c of categories" [value]="c">{{ c | titlecase }}</option>
+            </select>
+          </div>
+        </div>
+
+        <label class="fld-label">Description</label>
+        <textarea class="fld" name="description" [(ngModel)]="product.description" placeholder="Short description" rows="3" required></textarea>
+
+        <label class="fld-label">Image {{ isEditing ? '(leave empty to keep current)' : '' }}</label>
+        <input class="fld fld-file" type="file" (change)="onFileChange($event)" accept="image/*" />
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-block">{{ isEditing ? 'Update Product' : 'Add Product' }}</button>
+          <button *ngIf="isEditing" type="button" class="btn btn-outline btn-block" (click)="resetForm()">Cancel</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Product list -->
+    <div class="panel list-panel">
+      <h3>All Products</h3>
+
+      <div class="product-table">
+        <div class="table-row table-head">
+          <span>Product</span>
+          <span>Category</span>
+          <span>Price</span>
+          <span>Actions</span>
+        </div>
+
+        <div class="table-row" *ngFor="let p of products">
+          <span class="cell-product">
+            <img [src]="imageURL + p.image" alt="{{ p.name }}" class="row-thumb">
+            <span class="row-name">{{ p.name }}</span>
+          </span>
+          <span><span class="cat-chip">{{ p.category || '—' }}</span></span>
+          <span class="cell-price">{{ p.price | currency:'EGP':'symbol-narrow' }}</span>
+          <span class="cell-actions">
+            <button class="icon-action" (click)="editProduct(p)" title="Edit">
+              <span class="material-icons-outlined">edit</span>
+            </button>
+            <button class="icon-action danger" (click)="promptDelete(p._id!)" title="Delete">
+              <span class="material-icons-outlined">delete_outline</span>
+            </button>
+          </span>
+        </div>
+
+        <div class="table-empty" *ngIf="products.length === 0">No products yet. Add your first one!</div>
+      </div>
+    </div>
+
   </div>
 
-<div class="dashboard">
-    <h1>Admin Dashboard</h1>
-  
-     <!-- Product Form -->
-     <form (ngSubmit)="submitProduct()" #productForm="ngForm">
-      <input
-        type="text"
-        name="name"
-        [(ngModel)]="product.name"
-        placeholder="Product Name"
-        required
-      />
-      <input
-        type="number"
-        name="price"
-        [(ngModel)]="product.price"
-        placeholder="Price"
-        required
-      />
-      <textarea
-        name="description"
-        [(ngModel)]="product.description"
-        placeholder="Description"
-        required
-      ></textarea>
-      <input
-        type="file"
-        (change)="onFileChange($event)"
-        accept="image/*"
-      />
-      <button type="submit">Add Product</button>
-    </form>
-<section>
-    <!-- Placeholder Buttons for Future -->
-    <button (click)="editProduct(product)">Edit</button>
-    <button (click)="promptDelete(product._id!)">Delete</button>
-
-    <!-- Delete Confirmation Modal -->
-<div class="modal-backdrop" *ngIf="showDeleteModal">
-  <div class="modal">
-    <h3>Are you sure you want to delete this product?</h3>
-    <div class="modal-actions">
-      <button (click)="confirmDelete()" class="confirm">Yes, Delete</button>
-      <button (click)="cancelDelete()" class="cancel">Cancel</button>
+  <!-- Delete Confirmation Modal -->
+  <div class="modal-backdrop" *ngIf="showDeleteModal">
+    <div class="confirm-modal">
+      <h3>Delete this product?</h3>
+      <p>This action cannot be undone.</p>
+      <div class="modal-actions">
+        <button (click)="confirmDelete()" class="btn danger-btn">Yes, Delete</button>
+        <button (click)="cancelDelete()" class="btn btn-outline">Cancel</button>
+      </div>
     </div>
   </div>
-</div>
-
-  </section>
-
- 
-
-
-
+</section>

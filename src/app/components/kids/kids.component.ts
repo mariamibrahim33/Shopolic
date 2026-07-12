@@ -21,7 +21,7 @@ export class KidsComponent implements OnInit{
 
     ngOnInit(): void {
       this.imageURL = this.shopService.uploadURL;
-      this.shopService.getProducts().subscribe((data: any[]) => {
+      this.shopService.getProducts('kids').subscribe((data: any[]) => {
         this.products = data;
       });
     }
@@ -35,7 +35,7 @@ export class KidsComponent implements OnInit{
   }
 
   addToCart(product: any): void {
-  
+    this.cartService.addToCart(product);
   }
 
 }

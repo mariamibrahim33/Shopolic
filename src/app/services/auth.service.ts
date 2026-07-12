@@ -11,7 +11,7 @@ export class AuthService {
   private tokenSubject: BehaviorSubject<string | null> = 
     new BehaviorSubject<string | null>(null);
 
-  apiURL = 'http://localhost:3000/user/login';
+  apiURL = 'http://localhost:3000/user';
 
   constructor(private _http: HttpClient) {
     const token = localStorage.getItem('accessToken');
@@ -20,16 +20,23 @@ export class AuthService {
     }
   }
 
+  private storeToken(res: any): void {
+    const token = res?.accessToken;
+    if (token) {
+      localStorage.setItem('accessToken', token);
+      this.tokenSubject.next(token);
+    }
+  }
+
   login(loginData: any): Observable<any> {
-    return this._http.post<any>(this.apiURL, loginData).pipe(
-      tap(res => {
-        const token = res.accessToken;
-        if (token) {
-          localStorage.setItem('accessToken', token);
-          this.tokenSubject.next(token);
-          console.log(res.accessToken);
-        }
-      })
+    return this._http.post<any>(`${this.apiURL}/login`, loginData).pipe(
+      tap(res => this.storeToken(res))
+    );
+  }
+
+  register(registerData: any): Observable<any> {
+    return this._http.post<any>(`${this.apiURL}/register`, registerData).pipe(
+      tap(res => this.storeToken(res))
     );
   }
 
@@ -58,5 +65,14 @@ export class AuthService {
   getUserName(): string | null {
     const decoded = this.decodeAccessToken();
     return decoded ? decoded.name : null;
+  }
+
+  getUserRole(): string | null {
+    const decoded = this.decodeAccessToken();
+    return decoded ? decoded.role : null;
+  }
+
+  isAdmin(): boolean {
+    return this.getUserRole() === 'admin';
   }
 }

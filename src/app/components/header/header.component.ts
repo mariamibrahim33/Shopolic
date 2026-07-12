@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../services/auth.service'; // adjust path as needed
+import { CartService } from '../../services/cart.service';
 import { CommonModule } from '@angular/common'; // Import CommonModule for ngIf
 
 @Component({
@@ -8,21 +9,32 @@ import { CommonModule } from '@angular/common'; // Import CommonModule for ngIf
   standalone: true,
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
-  imports: [CommonModule] // Add CommonModule here
+  imports: [CommonModule, RouterLink, RouterLinkActive]
 })
 export class HeaderComponent implements OnInit {
   loggedIn = false;
+  isAdmin = false;
   userName: string | null = null;
+  cartCount = 0;
 
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private cartService: CartService
+  ) {}
 
   ngOnInit() {
-    this.loggedIn = this.authService.isLoggedIn();
-    console.log('Logged In:', this.loggedIn);  // Check the console
-    if (this.loggedIn) {
-      this.userName = this.authService.getUserName();
-      console.log('User Name:', this.userName);  // Check the console
-    }
+    // React to login/logout so the header updates without a page refresh.
+    this.authService.getAccessToken().subscribe(() => {
+      this.loggedIn = this.authService.isLoggedIn();
+      this.isAdmin = this.loggedIn && this.authService.isAdmin();
+      this.userName = this.loggedIn ? this.authService.getUserName() : null;
+    });
+
+    // Keep the cart badge in sync with the cart.
+    this.cartService.items$.subscribe(items => {
+      this.cartCount = items.reduce((sum, i) => sum + i.quantity, 0);
+    });
   }
 
   navigateToLogin() {
@@ -31,8 +43,6 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.authService.logout();
-    this.loggedIn = false;
-    this.userName = null;
-    this.router.navigate(['/login']);
+    this.router.navigate(['/home']);
   }
 }

@@ -39,17 +39,7 @@ export class ProductListComponent implements OnInit {
   }
 
   addToCart(product: any): void {
-  
-    }
-  
-
-  
-    
-
-  // Uncomment when you integrate the cart
-  // addToCart(product: any): void {
-  //   console.log('Add to cart:', product);
-  //   // this.cartService.addToCart(product);
-  // }
+    this.cartService.addToCart(product);
+  }
 }
 

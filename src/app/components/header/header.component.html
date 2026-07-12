@@ -1,24 +1,51 @@
-<nav>
-  <div class="spacer"></div>
+<header class="site-header">
+  <div class="header-inner">
 
-  <div class="logo">
-    <a href="/">Shopolic</a>
+    <!-- Left: category navigation (shoppers only) -->
+    <nav class="nav-left">
+      <ng-container *ngIf="!isAdmin">
+        <a routerLink="/product-list" routerLinkActive="active">Shop All</a>
+        <a routerLink="/men" routerLinkActive="active">Men</a>
+        <a routerLink="/women" routerLinkActive="active">Women</a>
+        <a routerLink="/kids" routerLinkActive="active">Kids</a>
+        <a routerLink="/beauty" routerLinkActive="active">Beauty</a>
+      </ng-container>
+      <a *ngIf="isAdmin" routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+    </nav>
+
+    <!-- Center: logo -->
+    <div class="logo">
+      <a routerLink="/home" class="brand">
+        <svg class="brand-mark" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M5.5 8h13l-.9 11.5a1.5 1.5 0 0 1-1.5 1.4H7.9a1.5 1.5 0 0 1-1.5-1.4L5.5 8Z" />
+          <path d="M9 8V6.8a3 3 0 0 1 6 0V8" />
+          <circle cx="9.4" cy="11.6" r="0.5" fill="currentColor" stroke="none" />
+          <circle cx="14.6" cy="11.6" r="0.5" fill="currentColor" stroke="none" />
+        </svg>
+        <span class="brand-name">Shopolic</span>
+      </a>
+    </div>
+
+    <!-- Right: account + cart -->
+    <div class="actions">
+      <ng-container *ngIf="!loggedIn">
+        <a routerLink="/login" class="link-btn">Login</a>
+        <a routerLink="/register" class="pill-btn">Sign Up</a>
+      </ng-container>
+
+      <ng-container *ngIf="loggedIn">
+        <span class="greeting">Hi, {{ userName }}</span>
+        <a class="icon-btn" title="Log out" (click)="logout()">
+          <span class="material-icons-outlined">logout</span>
+        </a>
+      </ng-container>
+
+      <a *ngIf="!isAdmin" routerLink="/cart" class="icon-btn cart-link" title="Cart">
+        <span class="material-icons-outlined">shopping_bag</span>
+        <span *ngIf="cartCount > 0" class="cart-badge">{{ cartCount }}</span>
+      </a>
+    </div>
+
   </div>
-
-  <div class="icons">
-    <a href="/login" class="icon-link">
-      <span class="material-icons-outlined">person</span>
-    </a>
-    <a href="/cart" class="icon-link">
-      <span class="material-icons-outlined">shopping_cart</span>
-    </a>
-  </div>
-</nav>
-
-
-
-
-
-
-
-
+</header>
